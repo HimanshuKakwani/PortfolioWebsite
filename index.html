@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Himanshu Kakwani — SDE specializing in Java, Python, ML and fintech. Portfolio showcasing projects, research and achievements." />
+  <title>Himanshu Kakwani — Portfolio</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: "Inter", sans-serif;
+      background: linear-gradient(135deg, #0f0f23, #1a1a2e, #16213e);
+      color: #ffffff;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    /* Particles Background */
+    .particles {
+      position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    }
+    .particle {
+      position: absolute; width: 2px; height: 2px; background: #64ffda;
+      border-radius: 50%; animation: float 8s infinite linear; opacity: 0.6;
+    }
+    @keyframes float {
+      0% { transform: translateY(100vh) rotate(0deg); }
+      100% { transform: translateY(-100px) rotate(360deg); }
+    }
+
+    /* Navbar */
+    nav {
+      position: fixed; top: 0; width: 100%; padding: 20px 50px;
+      background: rgba(15,15,35,0.9); backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(100,255,218,0.08); z-index: 1000;
+    }
+    .nav-container {
+      max-width: 1200px; margin: 0 auto; display: flex;
+      justify-content: space-between; align-items: center;
+    }
+    .logo {
+      font-size: 1.3rem; font-weight: 700;
+      background: linear-gradient(45deg, #64ffda, #00bcd4);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .nav-links { list-style: none; display: flex; gap: 28px; }
+    .nav-links a {
+      text-decoration: none; color: #ccd6f6; position: relative; font-weight: 500;
+    }
+    .nav-links a:hover { color: #64ffda; }
+    .nav-links a::after {
+      content: ""; position: absolute; bottom: -5px; left: 0;
+      width: 0; height: 2px; background: #64ffda; transition: width 0.3s ease;
+    }
+    .nav-links a:hover::after { width: 100%; }
+
+    /* Scroll Indicator */
+    .scroll-indicator {
+      position: fixed; top: 0; left: 0; width: 100%; height: 4px;
+      background: rgba(100,255,218,0.06); z-index: 1001;
+    }
+    .scroll-progress {
+      height: 100%; background: linear-gradient(90deg, #64ffda, #00bcd4);
+      width: 0%;
+    }
+
+    /* Sections */
+    section {
+      min-height: 100vh; padding: 100px 50px; max-width: 1200px; margin: 0 auto;
+      position: relative; z-index: 1;
+    }
+    .section-header {
+      text-align: center; margin-bottom: 60px;
+    }
+    .section-header h2 {
+      font-size: 2.5rem;
+      background: linear-gradient(45deg, #64ffda, #00bcd4);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .section-header p { color: #8892b0; margin-top: 10px; }
+
+    /* Hero Section */
+    .hero {
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+      text-align: center; gap: 20px; min-height: 100vh;
+    }
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 800;
+      background: linear-gradient(45deg, #64ffda, #00bcd4, #ffd700);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-size: 200% 200%; animation: gradient 4s ease infinite;
+    }
+    @keyframes gradient {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+    .hero h2 { color: #8892b0; font-size: 1.2rem; font-weight: 600; }
+    .hero p {
+      max-width: 800px; color: #b7c0d9; line-height: 1.6; font-size: 1rem;
+    }
+    .cta-button {
+      display: inline-block; padding: 12px 34px; border-radius: 999px;
+      border: 2px solid #64ffda; color: #64ffda; text-decoration: none;
+      font-weight: 600; transition: all 0.25s ease; margin: 10px;
+    }
+    .cta-button:hover {
+      background: rgba(100,255,218,0.06); transform: translateY(-3px);
+    }
+
+    /* Projects - Full width like Research Section */
+    .projects-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+    .project-card {
+      background: rgba(17, 34, 64, 0.82);
+      border-radius: 14px;
+      padding: 28px;
+      border: 1px solid rgba(100, 255, 218, 0.1);
+      transition: 0.3s;
+    }
+    .project-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(100, 255, 218, 0.2);
+      background: rgba(17, 34, 64, 0.9);
+    }
+    .project-card h3 {
+      color: #e6eefb;
+      margin-bottom: 10px;
+    }
+    .project-card p {
+      color: #b7c0d9;
+      font-size: 0.95rem;
+      margin-bottom: 12px;
+      line-height: 1.6;
+    }
+    .project-tech {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+    .tech-tag {
+      background: rgba(100, 255, 218, 0.06);
+      border: 1px solid rgba(100, 255, 218, 0.2);
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      color: #64ffda;
+    }
+
+    /* Research */
+    .research-card {
+      background: rgba(17,34,64,0.82); border-radius: 14px; padding: 28px;
+      border: 1px solid rgba(100,255,218,0.1); margin-bottom: 30px;
+    }
+    .research-card h3 { color: #e6eefb; margin-bottom: 10px; }
+    .research-card .journal { color: #64ffda; font-weight: 600; margin-bottom: 12px; }
+
+    /* Achievements */
+    .achievements-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px;
+    }
+    .achievement-card {
+      background: rgba(17,34,64,0.65); border-radius: 12px; padding: 20px; text-align: center;
+      border: 1px solid rgba(100,255,218,0.06); transition: 0.3s;
+    }
+    .achievement-card:hover { transform: scale(1.03); border-color: rgba(100,255,218,0.15); }
+    .achievement-icon { font-size: 2rem; margin-bottom: 10px; color: #ffd700; }
+    .achievement-card h3 { color: #e6eefb; margin-bottom: 8px; }
+
+    /* Contact */
+    .contact { text-align: center; padding-bottom: 120px; }
+    .contact-content { max-width: 640px; margin: 0 auto; }
+    .contact h2 {
+      font-size: 2rem; margin-bottom: 18px;
+      background: linear-gradient(45deg, #64ffda, #00bcd4);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .contact p { color: #b7c0d9; margin-bottom: 20px; }
+    .social-links { display: flex; justify-content: center; gap: 24px; margin-top: 20px; }
+    .social-links a { color: #64ffda; font-weight: 600; text-decoration: none; }
+    .contact-details { margin-top: 30px; color: #ccd6f6; font-size: 0.95rem; }
+  </style>
+</head>
+<body>
+  <!-- Particles -->
+  <div class="particles" id="particles"></div>
+
+  <!-- Scroll Indicator -->
+  <div class="scroll-indicator"><div class="scroll-progress" id="scrollProgress"></div></div>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-container">
+      <div class="logo">Himanshu Kakwani</div>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#achievements">Achievements</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section id="home" class="hero">
+    <h1>Himanshu Kakwani</h1>
+    <h2>SDE @ Sharekhan • ML & Data Science</h2>
+    <p>Software Development Engineer with 2+ years of experience in Java and Python, specializing in scalable microservices and data-intensive systems. Experienced in distributed caching, SQL/NoSQL optimization, and ML-driven fintech solutions.</p>
+    <div>
+      <a href="#projects" class="cta-button">View My Work</a>
+      <a href="Himanshu_Kakwani_Resume.pdf" class="cta-button" download>📄 Download Resume</a>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects">
+    <div class="section-header">
+      <h2>Featured Projects</h2>
+      <p>Innovative solutions powered by machine learning and data science</p>
+    </div>
+    <div class="projects-grid">
+      <div class="project-card">
+        <!-- <h3>💰 Bond Pricing Engine</h3> -->
+         <a href="https://mbond.vercel.app/portfolio?tab=holdings" target="_blank" rel="noopener noreferrer"><h3>💰 Bond Pricing Engine</h3></a>
+        <p>An inventive pricing algorithm that fractionalizes bond ownership by assigning fair price to each fraction considering time-to-maturity, yield and credit risk. Built for SEBI Hackathon, aimed to increase liquidity in the bond market through innovative pricing strategies.</p>
+        <div class="project-tech">
+          <span class="tech-tag">Fractional Bonds</span> <span class="tech-tag">Quant Finance</span>
+          <span class="tech-tag">Incentive based pricing</span> <span class="tech-tag">Order Matching Engine</span>
+        </div>
+      </div>
+      <div class="project-card">
+        <h3>🎯 Smart Portfolio Builder</h3>.
+        <p>An interactive tool that can be used to create and manage personalized investment portfolios based on user-defined risk preferences and financial goals.</p>
+        <div class="project-tech">
+          <span class="tech-tag">Personal Finance Management</span> <span class="tech-tag">Portfolio Doctoring</span>
+          <span class="tech-tag">Risk Analysis</span> <span class="tech-tag">Heuristic based algorithm</span>
+        </div>
+      </div>
+      
+      <div class="project-card">
+        <h3>🧬 SynthFin Research</h3>
+        <p>Explores dynamic trading strategies and rebalancing techniques and compares them against traditional buy-and-hold strategies with backtesting to find optimal strategy based on user resources and requirements.</p>
+        <div class="project-tech">
+          <span class="tech-tag">Optimal Strategy Analysis</span> <span class="tech-tag">Machine Learning</span>
+          <span class="tech-tag">Portfolio Rebalancing</span> <span class="tech-tag">Backtesting</span>
+        </div>
+      </div>
+      <div class="project-card">
+        <h3>📄 Gov Document AI</h3>
+        <p>Automated classification and data extraction from government documents using computer vision and NLP techniques.</p>
+        <div class="project-tech">
+          <span class="tech-tag">CNN</span> <span class="tech-tag">OCR</span>
+          <span class="tech-tag">Computer Vision</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Research -->
+  <section id="research">
+    <div class="section-header">
+      <h2>Research Publications</h2>
+      <p>Contributing to optimization and decision-making in data-driven systems</p>
+    </div>
+    <div class="research-card">
+      <h3>Optimal Fantasy Premier League Team Selection Using Multi-Criteria Decision Making</h3>
+      <div class="journal">Published Research Paper</div>
+      <p>The premise of this research is to create a team recommender system that optimizes one's team selection strategy for the FPL. This research works by introducing objectivity and eliminating biases in the team selection process.</p>
+      <br>
+      <p>Published in: 2023 IEEE Pune Section International Conference (PuneCon)</p>
+      <br>
+      <span class="tech-tag">MCDM</span> <span class="tech-tag">XGBoost</span> <span class="tech-tag">TOPSIS</span> <span class="tech-tag">FPL</span> 
+      <a href="https://ieeexplore.ieee.org/abstract/document/10450054/" target="_blank" class="cta-button">🔗 Read Paper</a>
+    </div>
+  </section>
+
+  <!-- Achievements -->
+  <section id="achievements">
+    <div class="section-header">
+      <h2>Achievements & Recognition</h2>
+    </div>
+    <div class="achievements-grid">
+      <div class="achievement-card"><div class="achievement-icon">🥉</div><h3>Kaggle Bronze</h3></div>
+      <div class="achievement-card"><div class="achievement-icon">🏆</div><h3>HackerRank Gold</h3></div>
+      <div class="achievement-card"><div class="achievement-icon">🎯</div><h3>DataHack (Hackathon) Winner</h3></div>
+      <div class="achievement-card"><div class="achievement-icon">🎓</div><h3>ML Mentor - DJS Compute</h3></div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="contact">
+    <div class="contact-content">
+      <h2>Let's Connect</h2>
+      <p>Reach out for exciting collaborations, ML research, or professional opportunities.</p>
+      <div>
+        <a href="mailto:kakwanihimanshu@gmail.com" class="cta-button">📩 Email Me</a>
+        <a href="Himanshu_Kakwani_Resume.pdf" download class="cta-button">📄 Download Resume</a>
+      </div>
+      <div class="social-links">
+        <a href="https://www.linkedin.com/in/himanshukakwani/" target="_blank">LinkedIn</a>
+        <a href="https://github.com/HimanshuKakwani" target="_blank">GitHub</a>
+      </div>
+      <div class="contact-details">
+        <p>Himanshu Kakwani</p>
+        <p>Mumbai, India</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Scripts -->
+  <script>
+    function createParticles(count = 50) {
+      const c = document.getElementById("particles");
+      for (let i = 0; i < count; i++) {
+        const p = document.createElement("div");
+        p.className = "particle";
+        p.style.left = Math.random() * 100 + "%";
+        p.style.animationDelay = Math.random() * 8 + "s";
+        p.style.animationDuration = (Math.random() * 4 + 4) + "s";
+        c.appendChild(p);
+      }
+    }
+    function updateScrollProgress() {
+      const sTop = document.documentElement.scrollTop || document.body.scrollTop;
+      const sHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const prog = (sTop / sHeight) * 100;
+      document.getElementById("scrollProgress").style.width = prog + "%";
+    }
+    document.addEventListener("DOMContentLoaded", () => {
+      createParticles(); updateScrollProgress();
+    });
+    window.addEventListener("scroll", updateScrollProgress);
+  </script>
+</body>
+</html>
